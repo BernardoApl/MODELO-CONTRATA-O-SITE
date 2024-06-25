@@ -1,0 +1,24 @@
+document.getElementById('footballForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const formObject = {};
+  formData.forEach((value, key) => {
+      formObject[key] = value;
+  });
+
+  const jsonData = JSON.stringify(formObject, null, 2);
+  downloadJSON(jsonData, 'inscricao_futebol.json');
+});
+
+function downloadJSON(data, filename) {
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
