@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição de Futebol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="Logo Futmatch (1).png" alt="Futmatch Logo" class="logo">
+        </div>
+        <form id="footballForm">
+            <h1>Inscrição de Futebol</h1>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" required>
+            <label for="position">Posição:</label>
+            <select id="position" name="position" required>
+                <option value="" disabled selected>Selecione uma posição</option>
+                <option value="goalkeeper">Goleiro</option>
+                <option value="defender">Zagueiro</option>
+                <option value="forward">Lateral</option>
+                <option value="forward">Pivo</option>
+                <option value="midfielder">Meio-Campo</option>
+                <option value="forward">Atacante</option>
+                <option value="forward">CentroAvante</option>
+            </select>
+            <label for="contractModel">Modelo de Contratação:</label>
+            <select id="contractModel" name="contractModel" required>
+                <option value="" disabled selected>Selecione um modelo de contratação</option>
+                <option value="full-time">Tempo Integral</option>
+                <option value="part-time">Meio Período</option>
+                <option value="freelancer">Freelancer</option>
+            </select>
+            <label for="startDate">Data de Início:</label>
+            <input type="date" id="startDate" name="startDate" required>
+            <label for="matchesPlayed">Partidas Jogadas:</label>
+            <input type="number" id="matchesPlayed" name="matchesPlayed" required>
+            <label for="goals">Gols:</label>
+            <input type="number" id="goals" name="goals" required>
+            <label for="bestPosition">Considerações/Contribuição/Finalidade nas Partidas:</label>
+            <textarea id="bestPosition" name="bestPosition" rows="3" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <script>
+        // JSON data to be stored
+        const jsonData = {
+            "simpleStructure": {
+                "name": "João Silva",
+                "age": 22,
+                "position": "Atacante",
+                "contractModel": "Tempo Integral",
+                "startDate": "2024-07-01",
+                "matchesPlayed": 15,
+                "goals": 10,
+                "bestPosition": "Sempre atuo como atacante, contribuindo com gols e assistências."
+            },
+            "withIdentifiers": {
+                "player": {
+                    "id": 12345,
+                    "personalDetails": {
+                        "name": "Maria Souza",
+                        "age": 25
+                    },
+                    "careerDetails": {
+                        "position": "Meio-Campo",
+                        "contractModel": "Meio Período",
+                        "startDate": "2024-08-15"
+                    },
+                    "statistics": {
+                        "matchesPlayed": 20,
+                        "goals": 5
+                    },
+                    "notes": "Tenho uma visão de jogo apurada e contribuo com assistências."
+                }
+            },
+            "nestedStructure": {
+                "registration": {
+                    "playerInfo": {
+                        "name": "Carlos Mendes",
+                        "age": 30,
+                        "position": "Goleiro"
+                    },
+                    "contractDetails": {
+                        "model": "Freelancer",
+                        "startDate": "2024-09-10"
+                    },
+                    "performanceStats": {
+                        "matches": 25,
+                        "goalsConceded": 30
+                    },
+                    "comments": "Defendo com segurança e tenho boa leitura de jogo."
+                }
+            },
+            "listStructure": [
+                {
+                    "name": "Ana Costa",
+                    "age": 28,
+                    "position": "Lateral",
+                    "contractModel": "Tempo Integral",
+                    "startDate": "2024-06-20",
+                    "matchesPlayed": 18,
+                    "goals": 2,
+                    "bestPosition": "Especialista em cruzamentos e apoio ao ataque."
+                },
+                {
+                    "name": "Pedro Santos",
+                    "age": 24,
+                    "position": "Zagueiro",
+                    "contractModel": "Meio Período",
+                    "startDate": "2024-07-05",
+                    "matchesPlayed": 22,
+                    "goals": 1,
+                    "bestPosition": "Bom no jogo aéreo e marcação."
+                }
+            ]
+        };
+
+        // Save JSON data to localStorage
+        localStorage.setItem('footballRegistrationData', JSON.stringify(jsonData));
+
+        // Example of how to retrieve and parse the data from localStorage
+        const retrievedData = JSON.parse(localStorage.getItem('footballRegistrationData'));
+        console.log(retrievedData);
+
+        // Add event listener to form submission to demonstrate data storage
+        document.getElementById('footballForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            alert('Form data has been saved to localStorage.');
+        });
+    </script>
+</body>
+</html>
